@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Varsha ❤️</title>
+
+<style>
+body{
+font-family: Arial;
+text-align:center;
+background:#ffe6f0;
+padding:40px;
+}
+
+button{
+padding:12px 20px;
+margin:10px;
+font-size:18px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.primary{background:#ff4d6d;color:white;}
+.secondary{background:#ddd;}
+
+img{
+max-width:300px;
+border-radius:20px;
+margin-top:20px;
+}
+
+/* slight cartoon effect */
+.cartoon{
+filter: contrast(120%) saturate(130%) brightness(105%);
+}
+
+.hidden{display:none;}
+
+.counter{
+font-size:22px;
+margin-top:10px;
+}
+
+.confetti{
+font-size:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="page1">
+
+<h2>Varsha ❤️</h2>
+
+<p>
+I know you are very angry.<br>
+And honestly… you have every right to be.
+</p>
+
+<p>
+But before you close this,<br>
+can you give Lakhvir 30 seconds?
+</p>
+
+<button class="secondary" onclick="ignore()">Ignore him 😒</button>
+<button class="primary" onclick="next('page2')">Okay let me see what he wants to say</button>
+
+<p id="ignoreText"></p>
+
+</div>
+
+<div id="page2" class="hidden">
+
+<h2>Slap Lakhvir 🤚</h2>
+
+<img src="lakhvir.png" class="cartoon">
+
+<p class="counter">
+Times Lakhvir deserved a slap:
+<span id="count">0</span>
+</p>
+
+<button onclick="slap()">Slap Lakhvir 🤚</button>
+<button onclick="slap()">Punch Lakhvir 👊</button>
+
+<br>
+
+<button class="secondary" onclick="next('page3')">Fine… what do you want to say?</button>
+
+<p id="slapText"></p>
+
+</div>
+
+<div id="page3" class="hidden">
+
+<h2>I'm Sorry</h2>
+
+<p>
+Varsha,<br><br>
+
+Maine bina wajah tumpe shak kiya.<br>
+Maine tumhe pareshaan kiya.<br>
+Aur us baat ka mujhe bahut regret hai.<br><br>
+
+Tum galat nahi ho.<br>
+Main galat tha.
+</p>
+
+<button onclick="no1()">Nahi maaf kiya</button>
+<button class="primary" onclick="next('page6')">Thoda sun rahi hu</button>
+
+<p id="more1"></p>
+
+</div>
+
+<div id="page4" class="hidden">
+
+<p>
+Sach bolu?<br><br>
+
+Main darr gaya tha.<br>
+
+Tum meri life mein bahut important ho.<br>
+Aur shayad isi wajah se main stupid behave kar gaya.
+</p>
+
+<button onclick="no2()">Still nahi</button>
+<button class="primary" onclick="next('page5')">Okay continue</button>
+
+<p id="more2"></p>
+
+</div>
+
+<div id="page5" class="hidden">
+
+<h2>Promise 🤞</h2>
+
+<p>
+Varsha,<br><br>
+
+Main tumse sirf pyaar nahi karta.<br>
+Main tumse shaadi karna chahta hu.<br><br>
+
+Aur agar hum shaadi karenge,<br>
+toh mujhe aisa insaan banna padega<br>
+jo tumhe trust kare.<br><br>
+
+Aur main waise hi banna chahta hu.
+</p>
+
+<button class="primary" onclick="next('page6')">Make Lakhvir Promise 🤞</button>
+
+</div>
+
+<div id="page6" class="hidden">
+
+<h2>I Promise</h2>
+
+<p>
+No unnecessary doubt<br>
+No hurting you<br>
+More trust<br>
+More patience<br>
+And a lifetime of annoying you with love
+</p>
+
+<button onclick="next('page4')">Still angry 😤</button>
+<button class="primary" onclick="next('page7')">Okay… maaf kiya ❤️</button>
+
+</div>
+
+<div id="page7" class="hidden">
+
+<h1 class="confetti">🎉🎉🎉</h1>
+
+<h2>Thank you Varsha ❤️</h2>
+
+<p>You just saved Lakhvir from dying of guilt.</p>
+
+<h2>Future loading...</h2>
+
+<img src="us.png">
+
+<h2>Varsha ❤️ Lakhvir</h2>
+
+<h3>Shaadi Coming Soon</h3>
+
+<p>
+I know I messed up.<br>
+But I also know one thing clearly.<br><br>
+
+I want to spend my life with you.<br>
+And I will work everyday to deserve that.<br><br>
+
+I love you.<br>
+– Lakhvir
+</p>
+
+</div>
+
+<script>
+
+let slapCount=0;
+
+function slap(){
+slapCount++
+document.getElementById("count").innerText=slapCount
+
+if(slapCount<5)
+document.getElementById("slapText").innerText="Ouch! I deserved that."
+else
+document.getElementById("slapText").innerText="Okay okay I get it 😭"
+}
+
+function ignore(){
+document.getElementById("ignoreText").innerText="Lakhvir is still waiting… please just hear him once."
+}
+
+function next(id){
+
+let pages=document.querySelectorAll("body > div")
+
+pages.forEach(p=>p.classList.add("hidden"))
+
+document.getElementById(id).classList.remove("hidden")
+
+}
+
+function no1(){
+document.getElementById("more1").innerText="Please ek baar aur sun lo."
+}
+
+function no2(){
+document.getElementById("more2").innerText="Thoda aur patience please."
+}
+
+</script>
+
+</body>
+</html>
