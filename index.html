@@ -1,242 +1,504 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
+
 <head>
-<title>Varsha ❤️</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Varsha</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body{
-font-family: Arial;
-text-align:center;
-background:#ffe6f0;
-padding:40px;
+
+*{
+box-sizing:border-box;
 }
 
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(120deg,#fdfbfb,#ebedee);
+color:#333;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+overflow-x:hidden;
+}
+
+/* floating gradient background */
+
+body::before{
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+background:radial-gradient(circle,#ff9a9e,transparent);
+top:-200px;
+left:-200px;
+opacity:.35;
+filter:blur(120px);
+}
+
+body::after{
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+background:radial-gradient(circle,#a18cd1,transparent);
+bottom:-200px;
+right:-200px;
+opacity:.35;
+filter:blur(120px);
+}
+
+.container{
+width:100%;
+max-width:520px;
+padding:30px;
+}
+
+.page{
+display:none;
+animation:fade .6s ease;
+}
+
+.active{
+display:block;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* card */
+
+.card{
+background:rgba(255,255,255,0.65);
+backdrop-filter:blur(20px);
+border-radius:20px;
+padding:35px;
+box-shadow:0 20px 40px rgba(0,0,0,.12);
+text-align:center;
+}
+
+/* headings */
+
+h1{
+font-weight:600;
+margin-bottom:15px;
+}
+
+p{
+color:#555;
+line-height:1.6;
+}
+
+/* buttons */
+
 button{
-padding:12px 20px;
-margin:10px;
-font-size:18px;
+margin-top:15px;
+padding:14px 26px;
 border:none;
-border-radius:10px;
+border-radius:12px;
+background:#ff5e78;
+color:white;
+font-weight:500;
+cursor:pointer;
+transition:.25s;
+}
+
+button:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+}
+
+.secondary{
+background:#eee;
+color:#444;
+}
+
+/* moving ignore button */
+
+#ignoreBtn{
+position:absolute;
+}
+
+/* image */
+
+.faceWrap{
+position:relative;
+margin-top:25px;
+}
+
+.faceWrap img{
+width:220px;
+border-radius:16px;
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+/* hit effects */
+
+.hit{
+position:absolute;
+font-size:26px;
+animation:pop .6s ease;
+}
+
+@keyframes pop{
+0%{transform:scale(0);opacity:0}
+70%{transform:scale(1.4);opacity:1}
+100%{transform:scale(1)}
+}
+
+/* shake */
+
+@keyframes shake{
+0%{transform:translateX(0)}
+25%{transform:translateX(-8px)}
+50%{transform:translateX(8px)}
+75%{transform:translateX(-6px)}
+100%{transform:translateX(0)}
+}
+
+.shake{
+animation:shake .35s;
+}
+
+/* invitation */
+
+.invitation{
+margin-top:25px;
+perspective:1000px;
+}
+
+.cardFlip{
+width:300px;
+height:180px;
+margin:auto;
+position:relative;
+transform-style:preserve-3d;
+transition:transform 1s;
 cursor:pointer;
 }
 
-.primary{background:#ff4d6d;color:white;}
-.secondary{background:#ddd;}
-
-img{
-max-width:300px;
-border-radius:20px;
-margin-top:20px;
+.front,.inside{
+position:absolute;
+width:100%;
+height:100%;
+border-radius:14px;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+backface-visibility:hidden;
+box-shadow:0 12px 30px rgba(0,0,0,.2);
 }
 
-/* slight cartoon effect */
-.cartoon{
-filter: contrast(120%) saturate(130%) brightness(105%);
+.front{
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+color:white;
 }
 
-.hidden{display:none;}
-
-.counter{
-font-size:22px;
-margin-top:10px;
+.inside{
+background:white;
+transform:rotateY(180deg);
 }
 
-.confetti{
-font-size:40px;
+.open{
+transform:rotateY(180deg);
+}
+
+ul{
+text-align:left;
+max-width:260px;
+margin:auto;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div id="page1">
+<div class="container">
 
-<h2>Varsha ❤️</h2>
+<!-- PAGE 1 -->
+
+<div class="page active" id="page1">
+
+<div class="card">
+
+<h1>Varsha</h1>
 
 <p>
-I know you are very angry.<br>
+I know you're angry with me.
 And honestly… you have every right to be.
 </p>
 
 <p>
-But before you close this,<br>
-can you give Lakhvir 30 seconds?
+But before you close this,
+can you give me just 30 seconds?
 </p>
 
-<button class="secondary" onclick="ignore()">Ignore him 😒</button>
-<button class="primary" onclick="next('page2')">Okay let me see what he wants to say</button>
+<button onclick="nextPage(2)">
+Okay… what do you want to say
+</button>
 
-<p id="ignoreText"></p>
+<button class="secondary" id="ignoreBtn">
+Ignore him
+</button>
 
 </div>
 
-<div id="page2" class="hidden">
+</div>
 
-<h2>Slap Lakhvir 🤚</h2>
+<!-- PAGE 2 -->
 
-<img src="lakhvir.png" class="cartoon">
+<div class="page" id="page2">
 
-<p class="counter">
-Times Lakhvir deserved a slap:
-<span id="count">0</span>
-</p>
+<div class="card">
 
-<button onclick="slap()">Slap Lakhvir 🤚</button>
-<button onclick="slap()">Punch Lakhvir 👊</button>
+<h1>You can punish me first</h1>
+
+<div class="faceWrap">
+
+<img id="face" src="lakhvir.png">
+
+</div>
+
+<p id="reaction"></p>
+
+<button onclick="slap()">Slap</button>
+
+<button onclick="punch()">Punch</button>
 
 <br>
 
-<button class="secondary" onclick="next('page3')">Fine… what do you want to say?</button>
-
-<p id="slapText"></p>
-
-</div>
-
-<div id="page3" class="hidden">
-
-<h2>I'm Sorry</h2>
-
-<p>
-Varsha,<br><br>
-
-Maine bina wajah tumpe shak kiya.<br>
-Maine tumhe pareshaan kiya.<br>
-Aur us baat ka mujhe bahut regret hai.<br><br>
-
-Tum galat nahi ho.<br>
-Main galat tha.
-</p>
-
-<button onclick="no1()">Nahi maaf kiya</button>
-<button class="primary" onclick="next('page6')">Thoda sun rahi hu</button>
-
-<p id="more1"></p>
+<button onclick="nextPage(3)">
+Okay… speak
+</button>
 
 </div>
 
-<div id="page4" class="hidden">
+</div>
 
-<p>
-Sach bolu?<br><br>
+<!-- PAGE 3 -->
 
-Main darr gaya tha.<br>
+<div class="page" id="page3">
 
-Tum meri life mein bahut important ho.<br>
-Aur shayad isi wajah se main stupid behave kar gaya.
+<div class="card">
+
+<h1>Future With You</h1>
+
+<ul>
+
+<li>Travel together</li>
+<li>Fight over food</li>
+<li>Meet each other's families</li>
+<li>Grow old together</li>
+
+</ul>
+
+<p style="margin-top:15px">
+
+And someday…
+
 </p>
 
-<button onclick="no2()">Still nahi</button>
-<button class="primary" onclick="next('page5')">Okay continue</button>
+<h2>Marry you</h2>
 
-<p id="more2"></p>
+<button onclick="nextPage(4)">
+Make me promise
+</button>
 
 </div>
 
-<div id="page5" class="hidden">
+</div>
 
-<h2>Promise 🤞</h2>
+<!-- PAGE 4 -->
 
-<p>
-Varsha,<br><br>
+<div class="page" id="page4">
 
-Main tumse sirf pyaar nahi karta.<br>
-Main tumse shaadi karna chahta hu.<br><br>
+<div class="card">
 
-Aur agar hum shaadi karenge,<br>
-toh mujhe aisa insaan banna padega<br>
-jo tumhe trust kare.<br><br>
+<h1>My Promise</h1>
 
-Aur main waise hi banna chahta hu.
-</p>
+<p>✔ No unnecessary doubt</p>
+<p>✔ Listen before reacting</p>
+<p>✔ Trust you</p>
+<p>✔ Make you smile again</p>
 
-<button class="primary" onclick="next('page6')">Make Lakhvir Promise 🤞</button>
+<button onclick="nextPage(5)">
+Maybe I forgive you
+</button>
 
 </div>
 
-<div id="page6" class="hidden">
+</div>
 
-<h2>I Promise</h2>
+<!-- PAGE 5 -->
 
-<p>
-No unnecessary doubt<br>
-No hurting you<br>
-More trust<br>
-More patience<br>
-And a lifetime of annoying you with love
-</p>
+<div class="page" id="page5">
 
-<button onclick="next('page4')">Still angry 😤</button>
-<button class="primary" onclick="next('page7')">Okay… maaf kiya ❤️</button>
+<div class="card">
+
+<h1>Before you leave…</h1>
+
+<p>I want to show you something.</p>
+
+<div class="invitation">
+
+<div class="cardFlip" onclick="openCard()">
+
+<div class="front">
+
+<h2>Tap to open</h2>
 
 </div>
 
-<div id="page7" class="hidden">
+<div class="inside">
 
-<h1 class="confetti">🎉🎉🎉</h1>
+<h2>Varsha & Lakhvir</h2>
 
-<h2>Thank you Varsha ❤️</h2>
+<p>Wedding Invitation</p>
 
-<p>You just saved Lakhvir from dying of guilt.</p>
+<p>Coming Soon</p>
 
-<h2>Future loading...</h2>
+</div>
 
-<img src="us.png">
+</div>
 
-<h2>Varsha ❤️ Lakhvir</h2>
+</div>
 
-<h3>Shaadi Coming Soon</h3>
+<button onclick="nextPage(6)">
+If you forgive me
+</button>
 
-<p>
-I know I messed up.<br>
-But I also know one thing clearly.<br><br>
+</div>
 
-I want to spend my life with you.<br>
-And I will work everyday to deserve that.<br><br>
+</div>
 
-I love you.<br>
-– Lakhvir
-</p>
+<!-- PAGE 6 -->
+
+<div class="page" id="page6">
+
+<div class="card">
+
+<h1>Varsha & Lakhvir</h1>
+
+<img src="couple.jpg" style="width:240px;border-radius:14px;margin-top:20px">
+
+<h2 style="margin-top:20px">
+Shaadi Coming Soon
+</h2>
+
+<p>Hopefully with you saying yes.</p>
+
+</div>
+
+</div>
 
 </div>
 
 <script>
 
-let slapCount=0;
+function nextPage(n){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
+document.getElementById("page"+n).classList.add("active")
+}
+
+/* moving ignore */
+
+const ignore=document.getElementById("ignoreBtn")
+
+ignore.addEventListener("mouseover",()=>{
+ignore.style.top=Math.random()*70+"vh"
+ignore.style.left=Math.random()*70+"vw"
+})
+
+/* hit effects */
+
+let hits=[]
+
+function effect(){
+
+const face=document.getElementById("face")
+
+const effects=["⭐","✨","💫","🌟","😵"]
+
+const e=document.createElement("div")
+
+e.className="hit"
+
+e.innerText=effects[Math.floor(Math.random()*effects.length)]
+
+e.style.left=Math.random()*180+"px"
+
+e.style.top=Math.random()*160+"px"
+
+face.parentElement.appendChild(e)
+
+hits.push(e)
+
+if(hits.length>6){
+hits[0].remove()
+hits.shift()
+}
+
+}
+
+/* reactions */
+
+const reactions=[
+"Ouch",
+"I deserved that",
+"Okay that hurt",
+"Sorry Varsha",
+"Fair enough"
+]
+
+function react(){
+document.getElementById("reaction").innerText=
+reactions[Math.floor(Math.random()*reactions.length)]
+}
 
 function slap(){
-slapCount++
-document.getElementById("count").innerText=slapCount
 
-if(slapCount<5)
-document.getElementById("slapText").innerText="Ouch! I deserved that."
-else
-document.getElementById("slapText").innerText="Okay okay I get it 😭"
-}
+const face=document.getElementById("face")
 
-function ignore(){
-document.getElementById("ignoreText").innerText="Lakhvir is still waiting… please just hear him once."
-}
+face.classList.add("shake")
 
-function next(id){
+setTimeout(()=>face.classList.remove("shake"),300)
 
-let pages=document.querySelectorAll("body > div")
-
-pages.forEach(p=>p.classList.add("hidden"))
-
-document.getElementById(id).classList.remove("hidden")
+effect()
+react()
 
 }
 
-function no1(){
-document.getElementById("more1").innerText="Please ek baar aur sun lo."
+function punch(){
+
+const face=document.getElementById("face")
+
+face.classList.add("shake")
+
+setTimeout(()=>face.classList.remove("shake"),300)
+
+effect()
+react()
+
 }
 
-function no2(){
-document.getElementById("more2").innerText="Thoda aur patience please."
+function openCard(){
+document.querySelector(".cardFlip").classList.toggle("open")
 }
 
 </script>
 
 </body>
+
 </html>
