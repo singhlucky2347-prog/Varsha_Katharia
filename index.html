@@ -24,11 +24,11 @@ display:flex;
 justify-content:center;
 align-items:center;
 min-height:100dvh;
-overflow-x:hidden;
+overflow:hidden;
 touch-action:manipulation;
 }
 
-/* floating gradient background */
+/* floating background */
 
 body::before{
 content:"";
@@ -112,23 +112,19 @@ cursor:pointer;
 transition:.25s;
 }
 
-button:hover{
-transform:translateY(-2px);
-box-shadow:0 10px 20px rgba(0,0,0,.15);
-}
-
 .secondary{
 background:#eee;
 color:#444;
 }
 
-/* moving ignore button */
+/* ignore button */
 
 #ignoreBtn{
-position:absolute;
-top:60%;
+position:fixed;
+top:65%;
 left:50%;
 transform:translate(-50%,-50%);
+z-index:10;
 }
 
 /* image */
@@ -144,7 +140,7 @@ border-radius:16px;
 box-shadow:0 10px 25px rgba(0,0,0,.2);
 }
 
-/* hit effects */
+/* hit effect */
 
 .hit{
 position:absolute;
@@ -230,23 +226,14 @@ margin:auto;
 
 <div class="container">
 
-<!-- PAGE 1 -->
-
 <div class="page active" id="page1">
 
 <div class="card">
 
 <h1>Varsha</h1>
 
-<p>
-I know you're angry with me.
-And honestly you have every right to be.
-</p>
-
-<p>
-But before you close this
-can you give me just 30 seconds?
-</p>
+<p>I know you're angry with me.</p>
+<p>But before you close this can you give me 30 seconds?</p>
 
 <button onclick="nextPage(2)">
 Okay what do you want to say
@@ -260,8 +247,6 @@ Ignore me
 
 </div>
 
-<!-- PAGE 2 -->
-
 <div class="page" id="page2">
 
 <div class="card">
@@ -269,15 +254,12 @@ Ignore me
 <h1>You can punish me first</h1>
 
 <div class="faceWrap">
-
 <img id="face" src="lakhvir.png">
-
 </div>
 
 <p id="reaction"></p>
 
 <button onclick="slap()">Slap</button>
-
 <button onclick="punch()">Punch</button>
 
 <br>
@@ -290,8 +272,6 @@ Okay speak
 
 </div>
 
-<!-- PAGE 3 -->
-
 <div class="page" id="page3">
 
 <div class="card">
@@ -299,17 +279,11 @@ Okay speak
 <h1>Future With You</h1>
 
 <ul>
-
 <li>Travel together</li>
 <li>Fight over food</li>
 <li>Meet each other's families</li>
 <li>Grow old together</li>
-
 </ul>
-
-<p style="margin-top:15px">
-And someday
-</p>
 
 <h2>Marry you</h2>
 
@@ -320,8 +294,6 @@ Make me promise
 </div>
 
 </div>
-
-<!-- PAGE 4 -->
 
 <div class="page" id="page4">
 
@@ -341,8 +313,6 @@ Maybe I forgive you
 </div>
 
 </div>
-
-<!-- PAGE 5 -->
 
 <div class="page" id="page5">
 
@@ -378,8 +348,6 @@ If you forgive me
 
 </div>
 
-<!-- PAGE 6 -->
-
 <div class="page" id="page6">
 
 <div class="card">
@@ -388,9 +356,7 @@ If you forgive me
 
 <img src="couple.jpg" style="width:240px;border-radius:14px;margin-top:20px">
 
-<h2 style="margin-top:20px">
-Shaadi Coming Soon
-</h2>
+<h2 style="margin-top:20px">Shaadi Coming Soon</h2>
 
 <p>Hopefully with you saying yes</p>
 
@@ -407,19 +373,25 @@ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
 document.getElementById("page"+n).classList.add("active")
 }
 
-/* ignore button movement */
+/* ignore button */
 
-const ignore=document.getElementById("ignoreBtn")
+const ignore = document.getElementById("ignoreBtn")
 
-function moveIgnore(){
-ignore.style.top=Math.random()*70+"vh"
-ignore.style.left=Math.random()*70+"vw"
+function moveIgnore(e){
+if(e) e.preventDefault()
+
+const x = Math.random() * (window.innerWidth - ignore.offsetWidth)
+const y = Math.random() * (window.innerHeight - ignore.offsetHeight)
+
+ignore.style.left = x + "px"
+ignore.style.top = y + "px"
 }
 
 ignore.addEventListener("mouseover",moveIgnore)
 ignore.addEventListener("touchstart",moveIgnore)
+ignore.addEventListener("click",moveIgnore)
 
-/* hit effects */
+/* slap effects */
 
 let hits=[]
 
@@ -446,8 +418,6 @@ hits.shift()
 
 }
 
-/* reactions */
-
 const reactions=[
 "Ouch",
 "I deserved that",
@@ -462,29 +432,19 @@ reactions[Math.floor(Math.random()*reactions.length)]
 }
 
 function slap(){
-
 const face=document.getElementById("face")
-
 face.classList.add("shake")
-
 setTimeout(()=>face.classList.remove("shake"),300)
-
 effect()
 react()
-
 }
 
 function punch(){
-
 const face=document.getElementById("face")
-
 face.classList.add("shake")
-
 setTimeout(()=>face.classList.remove("shake"),300)
-
 effect()
 react()
-
 }
 
 function openCard(){
