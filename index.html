@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
@@ -25,8 +23,9 @@ color:#333;
 display:flex;
 justify-content:center;
 align-items:center;
-min-height:100vh;
+min-height:100dvh;
 overflow-x:hidden;
+touch-action:manipulation;
 }
 
 /* floating gradient background */
@@ -80,6 +79,7 @@ to{opacity:1;transform:translateY(0)}
 .card{
 background:rgba(255,255,255,0.65);
 backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
 border-radius:20px;
 padding:35px;
 box-shadow:0 20px 40px rgba(0,0,0,.12);
@@ -126,6 +126,9 @@ color:#444;
 
 #ignoreBtn{
 position:absolute;
+top:60%;
+left:50%;
+transform:translate(-50%,-50%);
 }
 
 /* image */
@@ -237,16 +240,16 @@ margin:auto;
 
 <p>
 I know you're angry with me.
-And honestly… you have every right to be.
+And honestly you have every right to be.
 </p>
 
 <p>
-But before you close this,
+But before you close this
 can you give me just 30 seconds?
 </p>
 
 <button onclick="nextPage(2)">
-Okay… what do you want to say
+Okay what do you want to say
 </button>
 
 <button class="secondary" id="ignoreBtn">
@@ -280,7 +283,7 @@ Ignore me
 <br>
 
 <button onclick="nextPage(3)">
-Okay… speak
+Okay speak
 </button>
 
 </div>
@@ -305,9 +308,7 @@ Okay… speak
 </ul>
 
 <p style="margin-top:15px">
-
-And someday…
-
+And someday
 </p>
 
 <h2>Marry you</h2>
@@ -347,28 +348,22 @@ Maybe I forgive you
 
 <div class="card">
 
-<h1>Before you leave…</h1>
+<h1>Before you leave</h1>
 
-<p>I want to show you something.</p>
+<p>I want to show you something</p>
 
 <div class="invitation">
 
 <div class="cardFlip" onclick="openCard()">
 
 <div class="front">
-
 <h2>Tap to open</h2>
-
 </div>
 
 <div class="inside">
-
 <h2>Varsha & Lakhvir</h2>
-
 <p>Wedding Invitation</p>
-
 <p>Coming Soon</p>
-
 </div>
 
 </div>
@@ -397,7 +392,7 @@ If you forgive me
 Shaadi Coming Soon
 </h2>
 
-<p>Hopefully with you saying yes.</p>
+<p>Hopefully with you saying yes</p>
 
 </div>
 
@@ -412,14 +407,17 @@ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
 document.getElementById("page"+n).classList.add("active")
 }
 
-/* moving ignore */
+/* ignore button movement */
 
 const ignore=document.getElementById("ignoreBtn")
 
-ignore.addEventListener("mouseover",()=>{
+function moveIgnore(){
 ignore.style.top=Math.random()*70+"vh"
 ignore.style.left=Math.random()*70+"vw"
-})
+}
+
+ignore.addEventListener("mouseover",moveIgnore)
+ignore.addEventListener("touchstart",moveIgnore)
 
 /* hit effects */
 
@@ -428,17 +426,13 @@ let hits=[]
 function effect(){
 
 const face=document.getElementById("face")
-
 const effects=["⭐","✨","💫","🌟","😵"]
 
 const e=document.createElement("div")
-
 e.className="hit"
-
 e.innerText=effects[Math.floor(Math.random()*effects.length)]
 
 e.style.left=Math.random()*180+"px"
-
 e.style.top=Math.random()*160+"px"
 
 face.parentElement.appendChild(e)
@@ -500,5 +494,4 @@ document.querySelector(".cardFlip").classList.toggle("open")
 </script>
 
 </body>
-
 </html>
